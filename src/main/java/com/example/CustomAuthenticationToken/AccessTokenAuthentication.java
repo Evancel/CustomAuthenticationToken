@@ -1,8 +1,8 @@
 package com.example.CustomAuthenticationToken;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,7 +14,7 @@ public class AccessTokenAuthentication implements Authentication {
     public AccessTokenAuthentication(String token) { this.token = token; }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() { return List.of(); }
+    public Collection<? extends GrantedAuthority> getAuthorities() { return List.of(new SimpleGrantedAuthority("TOKEN")); }
 
     @Override
     public Object getCredentials() { return token; }
@@ -23,9 +23,7 @@ public class AccessTokenAuthentication implements Authentication {
     public Object getDetails() { return null; }
 
     @Override
-    public Object getPrincipal() {
-        return "bearer access token";
-    }
+    public Object getPrincipal() { return "bearer access token"; }
 
     @Override
     public boolean isAuthenticated() { return authenticated; }

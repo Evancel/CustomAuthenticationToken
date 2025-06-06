@@ -19,7 +19,7 @@ public class AccessTokenAuthenticationProvider implements AuthenticationProvider
     @Transactional(noRollbackFor = BadCredentialsException.class)
     @Override
     public Authentication authenticate(Authentication authentication) {
-        var token = authentication.getCredentials().toString();
+        String token = authentication.getCredentials().toString();
 
         AccessToken accessToken = repository
                 .findByToken(token)

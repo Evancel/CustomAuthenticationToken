@@ -23,7 +23,7 @@ public class DemoController {
 
         var token = new AccessToken();
         token.setToken(hexString);
-        var timestamp = System.currentTimeMillis() + 300_000; // TTL = 30 seconds
+        var timestamp = System.currentTimeMillis() + 300_000; // TTL = 300 seconds
         token.setExpiresAt(new Date(timestamp));
         repository.save(token);
 

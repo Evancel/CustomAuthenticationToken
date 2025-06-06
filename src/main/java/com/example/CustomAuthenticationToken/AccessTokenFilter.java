@@ -38,7 +38,7 @@ public class AccessTokenFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         if (matcher.matches(request)) {
             try {
-                var token = request.getHeader("Access-Token");
+                String token = request.getHeader("Access-Token");
                 if (token != null) {
                     Authentication authentication = new AccessTokenAuthentication(token);
                     authentication = manager.authenticate(authentication);
